@@ -81,7 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
             cardsWon.push(cardsChosen);
         } else {
             cards[optionOneId].setAttribute('src', 'images/blank.png');
+            cards[optionOneId].addEventListener('click', flipCard);
             cards[optionTwoId].setAttribute('src', 'images/blank.png');
+            cards[optionTwoId].addEventListener('click', flipCard);
             alert('Sorry, try again');
         }
         cardsChosen = [];
@@ -96,11 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let cardId = this.getAttribute('data-id');
         cardsChosen.push(cardArray[cardId].name);
         cardsChosenId.push(cardId);
+        this.removeEventListener('click', flipCard);
         this.setAttribute('src', cardArray[cardId].img);
         if(cardsChosen.length === 2){
-            setTimeout(checkForMatch, 500);
+            
+            setTimeout(checkForMatch, 50);
         }
     }
-
+    
     createBoard();
 });
